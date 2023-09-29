@@ -1,10 +1,12 @@
 #Use Python 3.11 as a base image
 FROM python:3.11
 # Copy contents into image
-  COPY requirements.txt .
+  COPY . .
 # install pip dependencies from requirements file
  RUN pip install -r requirements.txt
 # Expose correct port
-COPY . .
+
+ENV PORT=8080
+
 # Create an entrypoint
-CMD ["python", "lbg.py"]
+ENTRYPOINT python lbg.py --PORT ${PORT}
